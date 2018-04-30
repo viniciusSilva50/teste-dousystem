@@ -28,8 +28,9 @@ class ActivityController extends Controller{
             ->with(array_merge(['status' => $statusRepository->list()], $activity));
     }
 
-    public function delete(){
-
+    public function delete(Request $request){
+        $this->activityRepository->deleteActivity($request->id);
+        return redirect()->action('ActivityController@list');
     }
 
     public function save(ActivityPost $request){

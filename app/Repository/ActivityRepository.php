@@ -19,6 +19,7 @@ class ActivityRepository{
                 DB::raw("DATE_FORMAT(a.begin_date, '%d/%m/%Y') as begin_date"),
                 DB::raw("DATE_FORMAT(a.end_date, '%d/%m/%Y') as end_date"),
             ])
+            ->where('id', $activityId)
             ->first();
     }
 
@@ -27,6 +28,7 @@ class ActivityRepository{
             ->select([
                 'a.id as id',
                 'a.name',
+                'a.status_id as statusId',
                 DB::raw("CONCAT(SUBSTR(description, 1, 25), '...') as descriptionShort"),
                 's.name as status',
                 DB::raw("CASE a.situation WHEN 1 THEN 'Ativo' ELSE 'Desativado' END as situation"),
@@ -57,6 +59,10 @@ class ActivityRepository{
         } else {
             return $queryBuilder->insert($fields);
         }
+    }
+
+    public function deleteActivity($activityId){
+        return DB::table('activity')->where('id', '=', $activityId)->delete();
     }
 
 

@@ -50,7 +50,7 @@
                 <label for="status">Status</label>
                 <select id="status" name="status" class="form-control" required>
                     @foreach($status as $value)
-                        <option @if(old('status') == $value->id) selected  @endif value="{{$value->id}}">{{$value->name}}</option>
+                        <option @if(old('status') == $value->id || (isset($statusId) && $statusId == $value->id)) selected  @endif value="{{$value->id}}">{{$value->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -61,8 +61,10 @@
             </div>
         </div>
 
-        <div class="form-group col-lg-12">
-            <input id="save" type="submit" value="Salvar" class="btn btn-primary">
-        </div>
+        @if(!isset($statusId) || $statusId != '4')
+            <div class="form-group col-lg-12">
+                <input id="save" type="submit" value="Salvar" class="btn btn-primary">
+            </div>
+        @endif
     </form>
 @stop

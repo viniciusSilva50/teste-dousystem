@@ -1,6 +1,10 @@
 @extends('pages.admin.home')
 
 @section('content')
+    <div>
+        <a href="{{route('activity.create')}}" class="btn btn-success">Cadastrar</a>
+
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -23,11 +27,13 @@
                 <td>{{$activity->beginDate}}</td>
                 <td>{{$activity->endDate}}</td>
                 <td>
+                    @if($activity->statusId != 4)
                     <div class="btn-info btn">
                         <a href="{{route('activity.edit', $activity->id)}}">
                             Editar
                         </a>
                     </div>
+                    @endif
                     <div class="btn-danger btn">
                         <a href="{{route('activity.delete', $activity->id)}}">
                             Excluir
