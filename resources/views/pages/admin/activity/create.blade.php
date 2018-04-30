@@ -1,26 +1,29 @@
 @extends('pages.admin.home')
 @section('content')
-    <form action="" id="form-activity" method="post" class="col-lg-12">
+    <form action="{{route('activity.save')}}" id="form-activity" method="post" class="col-lg-12">
         @csrf
 
         <div class="form-group col-lg-12">
             <label for="name">Nome</label>
-            <input id="name" name="name" class="form-control" type="text" placeholder="Nome" title="Nome" maxlength="255" required>
+            <input id="name" name="name" class="form-control" type="text" placeholder="Nome" title="Nome" required maxlength="255" value="{{old('name')}}" >
+            @if($errors->has('name'))
+                <div class="alert alert-danger">{{$errors->first('name')}}</div>
+            @endif
         </div>
 
         <div class="form-group col-lg-12">
             <label for="description">Descrição</label>
-            <textarea id="description"  name="description" class="form-control" rows="4" cols="30" placeholder="Descrição" title="Descrição" maxlength="600" required ></textarea>
+            <textarea id="description"  name="description" class="form-control" rows="4" cols="30" placeholder="Descrição" title="Descrição" required maxlength="600">{{old('description')}}</textarea>
         </div>
 
         <div class="form-row col-lg-12">
             <div class="form-group col-lg-6">
                 <label for="begin-date">Data inicial</label>
-                <input id="begin-date" name="begin-date" class="begin-date form-control" type="text" placeholder="Data inicial" required>
+                <input id="begin-date" name="begin-date" class="begin-date form-control" type="text" placeholder="Data inicial" value="{{old('begin-date')}}">
             </div>
             <div class="form-group col-lg-6">
                 <label for="begin-date">Data final</label>
-                <input id="end-date" name="end-date" class="end-date form-control" type="text"  placeholder="Data final">
+                <input id="end-date" name="end-date" class="end-date form-control" type="text"  placeholder="Data final" value="{{old('end-date')}}">
             </div>
         </div>
 
