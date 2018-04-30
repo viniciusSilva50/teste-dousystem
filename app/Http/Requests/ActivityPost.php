@@ -28,7 +28,7 @@ class ActivityPost extends FormRequest
         return [
             'name' => 'required|max:255',
             'description' => 'required|max:600',
-            'begin-date' => 'required|date_format:d/m/Y' . is_null($this->end_date)? '' : '|before_or_equal:end_date',
+            'begin_date' => 'required|date_format:d/m/Y' . (is_null($this->end_date)? '' : '|before_or_equal:end_date'),
             'end_date' =>  ($notCompletedStatus? 'nullable|' : 'required|') . 'date_format:d/m/Y|after_or_equal:begin_date'
         ];
     }
