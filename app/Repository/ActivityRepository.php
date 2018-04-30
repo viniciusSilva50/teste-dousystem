@@ -4,7 +4,7 @@ namespace App\Repository;
 use App\Models\Status;
 use Illuminate\Support\Facades\DB;
 
-class StatusRepository{
+class ActivityRepository{
 
     public function list(){
         return DB::table('status')->orderBy('id', 'asc')->get();

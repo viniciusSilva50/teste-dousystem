@@ -15,12 +15,10 @@ class ActivityController extends Controller{
     }
 
     public function save(ActivityPost $request){
+        var_dump($request->input());
+        die();
+
         $validator = $request->validated();
-//        if($validator->fails()){
-//            return redirect('pages.admin.activity.create')
-//                    ->withErrors($validator)
-//                    ->withInput();
-//        }
         return view('pages.admin.activity.list');
     }
 
