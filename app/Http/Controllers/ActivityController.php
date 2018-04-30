@@ -21,17 +21,28 @@ class ActivityController extends Controller{
             ->with(['status' => $statusRepository->list()]);
     }
 
+    public function edit(Request $request){
+        $statusRepository = new StatusRepository();
+        $activity = $this->activityRepository->getActivity($request->id);
+        return view('pages.admin.activity.create')
+            ->with(array_merge(['status' => $statusRepository->list()], $activity));
+    }
+
+    public function delete(){
+
+    }
+
     public function save(ActivityPost $request){
         $success = $this->activityRepository->saveActivity($request);
         if(!$success){
             return redirect()->back()->withInput($request->all())->withErrors(['error' => 'Erro ao salvar os dados!']);
         }
-        return view('pages.admin.activity.list');
+        return redirect()->action('ActivityController@list');
     }
 
     public function list(){
-
-        return view('pages.admin.activity.list');
+        $activitys = $this->activityRepository->listActivitys();
+        return view('pages.admin.activity.list')->with(['activitys' => $activitys]);
     }
 
 }

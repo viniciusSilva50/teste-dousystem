@@ -18,5 +18,7 @@ Route::get('/', 'HomeController@index')->name('activity.list');
 Route::prefix('activity')->group(function () {
     Route::get('list', 'ActivityController@list')->name('activity.list');
     Route::get('create', 'ActivityController@create')->name('activity.create');
-    Route::post('save', 'ActivityController@Save')->name('activity.save');
+    Route::get('edit/{id}', 'ActivityController@edit')->name('activity.edit');
+    Route::delete('delete/{id}', 'ActivityController@delete')->name('activity.delete');
+    Route::post('save/{id?}', 'ActivityController@save')->name('activity.save');
 });

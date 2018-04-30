@@ -7,9 +7,13 @@
             <div class="alert alert-danger">{{$errors->first('error')}}</div>
         @endif
 
+        @if(isset($id))
+            <input type="hidden" id="id" name="id" value="{{$id}}">
+        @endif
+
         <div class="form-group col-lg-12">
             <label for="name">Nome</label>
-            <input id="name" name="name" class="form-control" type="text" placeholder="Nome" title="Nome" required  maxlength="255" value="{{old('name')}}" >
+            <input id="name" name="name" class="form-control" type="text" placeholder="Nome" title="Nome" required  maxlength="255" value="{{old('name', isset($name)? $name : '')}}" >
             @if($errors->has('name'))
                 <div class="alert alert-danger">{{$errors->first('name')}}</div>
             @endif
@@ -17,7 +21,7 @@
 
         <div class="form-group col-lg-12">
             <label for="description">Descrição</label>
-            <textarea id="description"  name="description" class="form-control" rows="4" cols="30" placeholder="Descrição" title="Descrição" required maxlength="600">{{old('description')}}</textarea>
+            <textarea id="description"  name="description" class="form-control" rows="4" cols="30" placeholder="Descrição" title="Descrição" required maxlength="600">{{old('description', isset($description)? $description : '')}}</textarea>
             @if($errors->has('description'))
                 <div class="alert alert-danger">{{$errors->first('description')}}</div>
             @endif
@@ -26,7 +30,7 @@
         <div class="form-row col-lg-12">
             <div class="form-group col-lg-6">
                 <label for="begin_date">Data inicial</label>
-                <input id="begin_date" name="begin_date" class="begin_date form-control" type="text" placeholder="Data inicial" required value="{{old('begin_date')}}">
+                <input id="begin_date" name="begin_date" class="begin_date form-control" type="text" placeholder="Data inicial" required value="{{old('begin_date', isset($begin_date)? $begin_date: '')}}">
                 @if($errors->has('begin_date'))
                     <div class="alert alert-danger">{{$errors->first('begin_date')}}</div>
                 @endif
@@ -34,7 +38,7 @@
 
             <div class="form-group col-lg-6">
                 <label for="end_date">Data final</label>
-                <input id="end_date" name="end_date" class="end_date form-control" type="text"  placeholder="Data final" value="{{old('end_date')}}">
+                <input id="end_date" name="end_date" class="end_date form-control" type="text"  placeholder="Data final" value="{{old('end_date', isset($end_date)? $end_date: '')}}">
                 @if($errors->has('end_date'))
                     <div class="alert alert-danger">{{$errors->first('end_date')}}</div>
                 @endif
